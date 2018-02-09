@@ -1,3 +1,6 @@
+#ifndef evalGAs_h
+#define evalGAs_h
+
 #include <eo>
 #include <Individuo.h>
 #include <IndiInit.h>
@@ -29,39 +32,63 @@ class evalGAs : public eoEvalFunc<EOT>{
   public :
     void operator()(EOT& _eo){
 
-      /**PARAMETROS DEFINIDOS**/
+      /**Conversion de Genotipo a valores de probabilidad**/
+        double probabilidades[8];
+        double Divisor1 = 0.0, Divisor2 = 0.0, Divisor3 = 0.0;
+
+        for (unsigned int i= 0; i< _eo.size(); i+=7){
+          probabilidades[i/7]=_eo[i]*64+_eo[i+1]*32+_eo[i+2]*16+_eo[i+3]*8+_eo[i+4]*4+_eo[i+5]*2+_eo[i+6]*1;
+        }
+
+        Divisor1 = probabilidades[0] + probabilidades[1] + probabilidades[2];
+        Divisor2 = probabilidades[3] + probabilidades[4] + probabilidades[5];
+        Divisor3 = probabilidades[6] + probabilidades[7];
+
+        double PcruzaA = probabilidades[0]/Divisor1;
+        double PcruzaB = probabilidades[1]/Divisor1;
+        double PcruzaC = probabilidades[2]/Divisor1;
+        double PmutationA = probabilidades[3]/Divisor2;
+        double PmutationB = probabilidades[4]/Divisor2;
+        double PmutationC = probabilidades[5]/Divisor2;
+        double PcruzaT = probabilidades[6]/Divisor3;
+        double PmutationT = probabilidades[7]/Divisor3;
+
+      /**Parametros de Parser**/
+      //Primero se debe definir un parser que lee desde la linea de comandos o un archivo
+          //eoParser parser(argc, argv);
+
       //Se definen los parametros, se leen desde el parser y le asigna el valor
           unsigned seed = time(0);
+
           //Datos necesarios del escenario de prueba
           double _min = 0.0;
-          double _max = 20.0;
-          unsigned int NoAnclas = 10;
-          unsigned int nodos = 100;
-          double radio = 5;
+          double _max = 200.0;
+          unsigned int NoAnclas = 20;
+          unsigned int nodos = 120;
+          double radio = 40.0;
 
           double DisReal[500][500];
           double vecAnclas[NoAnclas*2];
 
       //Configuracion parametros algoritmo
           unsigned int POP_SIZE = 100;
-          unsigned int numberGeneration = 1000;
-          unsigned int Nc = 2 ; // "Constante del operador SBX",'C',"Parametros Algoritmo").value();
-          double Alpha = 0.5 ;//parser.createParam((double)(0.5), "Alpha", "Constante del operador Aritmetico",'C',"Parametros Algoritmo").value();
-          float preferencia = 0.5 ;//parser.createParam((float)(0.5), "Preferencia", "Constante del operador Uniforme, define el sesgo",'C',"Parametros Algoritmo").value();
-          double Pcruza = 0.87 ;//parser.createParam((double)(0.87), "Pcruza", "Probabilidad de cruzamiento SBX",'X',"Parametros Algoritmo").value();
-          double epsilon = 5 ; //parser.createParam((double)(5), "Epsilon", "Rango de mutación",'F',"Parametros Algoritmo").value();
-          double P_change = 0.79 ; //parser.createParam((double)(0.79), "P_cambio", "Probabilidad de que mute el gen",'E',"Parametros Algoritmo").value();
-          double PmutationA = 0.33 ; //parser.createParam((double)(0.85), "Pmutacion", "Probabilidad de mutacion de la encapsulacion de SVN y Swap",'Y',"Parametros Algoritmo").value();
-          double PmutationB = 0.33 ; //parser.createParam((double)(0.85), "Pmutacion1", "Probabilidad de mutacion de SVN",'Z',"Parametros Algoritmo").value();
-          double PmutationC = 0.33 ; //parser.createParam((double)(0.5), "Pmutacion2", "Probabilidad de mutacion de Swap",'W',"Parametros Algoritmo").value();
-          double PmutationT = 0.33 ;
-          double PcruzaA = 0.33 ;
-          double PcruzaB = 0.33 ;
-          double PcruzaC = 0.33 ;
-          double PcruzaT = 0.33 ;
-          double sizeTorneo = 8 ; //parser.createParam((double)(8), "SizeTorneo", "Tamano del torneo para seleccion de individuos",'L',"Parametros Algoritmo").value();
-          double sizeElist = 2 ; //parser.createParam((double)(2), "SizeElist", "Cantidad de individuos que se conservan",'B',"Parametros Algoritmo").value();
-          double sizeTorneo1 = 2 ; //parser.createParam((double)(2), "SizeTorneo1", "Tamano del torneo para seleccion de individuos del elitismo",'Q',"Parametros Algoritmo").value();
+          unsigned int numberGeneration = 2;
+          unsigned int Nc = 2;
+          double Alpha = 0.5;
+          float preferencia = 0.5;
+          double epsilon = 5;
+          double P_change = 0.79;
+//          double PmutationA = 0.33 ; //parser.createParam((double)(0.85), "Pmutacion", "Probabilidad de mutacion de la encapsulacion de SVN y Swap",'Y',"Parametros Algoritmo").value();
+//          double PmutationB = 0.33 ; //parser.createParam((double)(0.85), "Pmutacion1", "Probabilidad de mutacion de SVN",'Z',"Parametros Algoritmo").value();
+//          double PmutationC = 0.33 ; //parser.createParam((double)(0.5), "Pmutacion2", "Probabilidad de mutacion de Swap",'W',"Parametros Algoritmo").value();
+//          double PmutationT = 0.33 ;
+//          double PcruzaA = 0.33 ;
+//          double PcruzaB = 0.33 ;
+//          double PcruzaC = 0.33 ;
+//          double PcruzaT = 0.33 ;
+          double sizeTorneo = 8;
+          double sizeElist = 2;
+          double sizeTorneo1 = 2;
       //Parametro de tiempo
           struct timeval ti, tf;
           double tiempo;
@@ -155,7 +182,7 @@ class evalGAs : public eoEvalFunc<EOT>{
               Fitness.guardarAnclas(vecAnclas);
 
           //Imprime la poblaci�n
-              poblacion.printOn(std::cout);
+              //poblacion.printOn(std::cout);
 
           //Imprime un salto de linea
               std::cout<< std::endl;
@@ -178,6 +205,25 @@ class evalGAs : public eoEvalFunc<EOT>{
               PuntoChequeo.add(Elmejor);
               PuntoChequeo.add(SegundoStat);
 
+          /**Otra forma de cargar la poblacion**/
+                      //Para la inicializaci�n del cromosoma, primero se debe definir como se generaran los genes y la semilla
+                      rng.reseed(seed);
+                      //Se utilizara un generador uniforme, (valor min, valor max)
+                      eoUniformGenerator<double> uGen(_min, _max);
+                      //Crear el inicializador para los cromosomas, llamado random
+                      IndiInit random(nodos*2,uGen);
+
+                      //Llena la poblaci�n y evalua cada cromosoma
+                      for(int i=0 ; i<POP_SIZE ; i++){
+                          random(cromosoma);
+                          Fitness(cromosoma);
+                          poblacion.push_back(cromosoma);
+                      }
+                      //Guarda la poblacion inicial a un archivo, para usarlo como semilla se debe agregar al inicio \section{eoPop}
+                      std::string pobla = "PopInicial.txt";
+                      std::ofstream poblacion1(pobla.c_str());
+                      poblacion.printOn(poblacion1);
+
           // Incializa el algoritmo genetico secuencial
               eoEasyEA<Individuo> algoritmo(PuntoChequeo, Fitness, seleccion, encapsulacion, reemplazo, Trunca);
 
@@ -193,25 +239,28 @@ class evalGAs : public eoEvalFunc<EOT>{
               std::cout << std::endl;
 
           //Imprime el mejor cromosoma
-              poblacion.best_element().printOn(std::cout);
+              //poblacion.best_element().printOn(std::cout);
+              //double valor;
+              //valor = poblacion.nth_element_fitness(0);
 
               std::cout << std::endl;
-              std::cout << std::endl;
+              //std::cout <<valor<< std::endl;
 
           //Imprime el tiempo de ejecuci�n del algoritmo
               tiempo = (tf.tv_sec - ti.tv_sec)*1000 + (tf.tv_usec - ti.tv_usec)/1000.0;
 
-              std::cout <<"Tiempo de ejecucion en milisegundos: " << tiempo << std::endl;
-              std::cout <<"Tiempo de ejecucion en segundos: " << tiempo/1000.0 << std::endl;
+              //std::cout <<"Tiempo de ejecucion en milisegundos: " << tiempo << std::endl;
+              //std::cout <<"Tiempo de ejecucion en segundos: " << tiempo/1000.0 << std::endl;
               std::cout <<"Tiempo de ejecucion en minutos: " << (tiempo/1000.0)/60 << std::endl;
 
-              std::cout << std::endl;
+              //std::cout << std::endl;
           //Se grafica el error y todos los nodos
               //std::string filename="generacion";
               //graphError error(filename, setGeneracion, numberGeneration, nodos, NoAnclas, _max);
 
-            std::cout << std::endl;
-            //Individuo.fitness().printOn(std::cout);
+            //std::cout << std::endl;
 
+            _eo.fitness(poblacion.nth_element_fitness(0));
     }
 };
+#endif

@@ -16,7 +16,7 @@ int main (int argc, char* argv[]){
     unsigned seed = parser.createParam(unsigned(time(0)), "Semilla", "semilla de numeros aleatorios", 'S').value();
 //Configuracion parametros algoritmo
     unsigned int POP_SIZE = parser.createParam((unsigned int)(100), "PopSize", "Tamano de la poblacion",'P',"Parametros Algoritmo").value();
-    unsigned int numberGeneration = parser.createParam((unsigned int)(1000), "MaxGen", "Criterio de parada, Numero maximo de generaciones",'G',"Parametros Algoritmo").value();
+    unsigned int numberGeneration = parser.createParam((unsigned int)(10), "MaxGen", "Criterio de parada, Numero maximo de generaciones",'G',"Parametros Algoritmo").value();
     unsigned int pointX = parser.createParam((unsigned int)(2), "PointX", "Cantidad de puntos de cruce",'A',"Parametros Algoritmo").value();
     unsigned int countOperator = parser.createParam((unsigned int)(6), "Operadores", "Cantidad de operadores de cruce y mutacion",'C',"Parametros Algoritmo").value();
     unsigned int Alelos = parser.createParam((unsigned int)(7), "Alelos", "Cantidad de alelos por gen/operador",'D',"Parametros Algoritmo").value();
@@ -55,7 +55,7 @@ int main (int argc, char* argv[]){
     //IndiBinario Individuo;
 
 //Generar una subclase de la clase de la funcion de evaluacion
-    evalPrueba<IndiBinario> Fitness;
+    evalGAs<IndiBinario> Fitness;
 
 //Criterio de parada
     eoGenContinue<IndiBinario> parada(numberGeneration);

@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /home/jfonseca/GitHub/Automatic/build
 # Include the progress variables for this target.
 include datos/CMakeFiles/instalar.dir/progress.make
 
-datos/CMakeFiles/instalar: ../datos/ags-ux-swap.param
+datos/CMakeFiles/instalar: ../datos/AGS-permuta.param
 datos/CMakeFiles/instalar: ../datos/Anclas1.txt
 datos/CMakeFiles/instalar: ../datos/Anclas2.txt
 datos/CMakeFiles/instalar: ../datos/Anclas3.txt
@@ -63,21 +63,12 @@ datos/CMakeFiles/instalar: ../datos/Allposition3.txt
 datos/CMakeFiles/instalar: ../datos/Matriz1.txt
 datos/CMakeFiles/instalar: ../datos/Matriz2.txt
 datos/CMakeFiles/instalar: ../datos/Matriz3.txt
-datos/CMakeFiles/instalar: ../datos/Semilla.sav
 datos/CMakeFiles/instalar: ../datos
 
 
 instalar: datos/CMakeFiles/instalar
 instalar: datos/CMakeFiles/instalar.dir/build.make
-	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/ags-ax-svn.param /home/jfonseca/GitHub/Automatic/build/application
-	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/ags-ax-swap.param /home/jfonseca/GitHub/Automatic/build/application
-	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/ags-ax-um.param /home/jfonseca/GitHub/Automatic/build/application
-	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/ags-sbx-svn.param /home/jfonseca/GitHub/Automatic/build/application
-	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/ags-sbx-swap.param /home/jfonseca/GitHub/Automatic/build/application
-	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/ags-sbx-um.param /home/jfonseca/GitHub/Automatic/build/application
-	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/ags-ux-svn.param /home/jfonseca/GitHub/Automatic/build/application
-	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/ags-ux-swap.param /home/jfonseca/GitHub/Automatic/build/application
-	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/ags-ux-um.param /home/jfonseca/GitHub/Automatic/build/application
+	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/AGS-permuta.param /home/jfonseca/GitHub/Automatic/build/application
 	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/Anclas1.txt /home/jfonseca/GitHub/Automatic/build/application
 	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/Anclas2.txt /home/jfonseca/GitHub/Automatic/build/application
 	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/Anclas3.txt /home/jfonseca/GitHub/Automatic/build/application
@@ -87,7 +78,6 @@ instalar: datos/CMakeFiles/instalar.dir/build.make
 	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/Matriz1.txt /home/jfonseca/GitHub/Automatic/build/application
 	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/Matriz2.txt /home/jfonseca/GitHub/Automatic/build/application
 	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/Matriz3.txt /home/jfonseca/GitHub/Automatic/build/application
-	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake -E copy_if_different /home/jfonseca/GitHub/Automatic/datos/Semilla.sav /home/jfonseca/GitHub/Automatic/build/application
 	cd /home/jfonseca/GitHub/Automatic/build/datos && /usr/bin/cmake
 .PHONY : instalar
 
