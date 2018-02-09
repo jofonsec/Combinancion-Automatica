@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 2.6)
 
 # Here define your project name
 # Aquí se define el nombre de tu proyecto
-project(Experimentos)
+project(Automatic)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_RELEASE} -std=c++11 -pthread")
 #SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -std=c++11 -pthread")
@@ -19,7 +19,7 @@ SET(PACKAGE_NAME "Experimentos" CACHE STRING "Package name" FORCE)
 SET(PACKAGE_VERSION "1.0" CACHE STRING "Package version" FORCE)
 
 # Aquí se define la ubicación de ParadisEO #IMPORTANTE#
-set(PARADISEO_ROOT /home/jose/GitHub/paradiseo)
+set(PARADISEO_ROOT /home/jfonseca/GitHub/paradiseo)
 
 # regular expression checking
 #include_regular_expression("^.*$" "^$")

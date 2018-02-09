@@ -1,0 +1,26 @@
+
+### GENERAL ########################################################################
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --Semilla=1518058156                     # -S : semilla de numeros aleatorios
+
+### GUARDAR DATOS ##################################################################
+# --setGeneracion=100                      # -T : Cada cuantas generaciones se guarda la poblacion
+
+### PARAMETROS ALGORITMO ###########################################################
+# --PopSize=100                            # -P : Tamano de la poblacion
+# --MaxGen=1000                            # -G : Criterio de parada, Numero maximo de generaciones
+# --PointX=2                               # -A : Cantidad de puntos de cruce
+# --Operadores=6                           # -C : Cantidad de operadores de cruce y mutacion
+# --Alelos=7                               # -D : Cantidad de alelos por gen/operador
+# --Pcruza=0.87                            # -X : Probabilidad de cruzamiento SBX
+# --Pmutacion=0.85                         # -Y : Probabilidad de mutacion de la encapsulacion de SVN y Swap
+# --Pmutacion1=0.85                        # -Z : Probabilidad de mutacion de SVN
+# --Pmutacion2=0.5                         # -W : Probabilidad de mutacion de Swap
+# --SizeTorneo=8                           # -L : Tamano del torneo para seleccion de individuos
+# --SizeElist=2                            # -B : Cantidad de individuos que se conservan
+# --SizeTorneo1=2                          # -Q : Tamano del torneo para seleccion de individuos del elitismo
+
+### PERSISTENCE ####################################################################
+# --status=./AGS-permuta.status            # -S : Status file
+# --Carga=                                 # -L : Se restaura desde un archivo guardado

@@ -1,0 +1,11 @@
+/home/jfonseca/GitHub/Automatic/build/CMakeFiles/rebuild_cache.dir
+/home/jfonseca/GitHub/Automatic/build/CMakeFiles/edit_cache.dir
+/home/jfonseca/GitHub/Automatic/build/src/CMakeFiles/rebuild_cache.dir
+/home/jfonseca/GitHub/Automatic/build/src/CMakeFiles/edit_cache.dir
+/home/jfonseca/GitHub/Automatic/build/src/CMakeFiles/lDiscovery.dir
+/home/jfonseca/GitHub/Automatic/build/application/CMakeFiles/rebuild_cache.dir
+/home/jfonseca/GitHub/Automatic/build/application/CMakeFiles/edit_cache.dir
+/home/jfonseca/GitHub/Automatic/build/application/CMakeFiles/AGS-permuta.dir
+/home/jfonseca/GitHub/Automatic/build/datos/CMakeFiles/rebuild_cache.dir
+/home/jfonseca/GitHub/Automatic/build/datos/CMakeFiles/edit_cache.dir
+/home/jfonseca/GitHub/Automatic/build/datos/CMakeFiles/instalar.dir
