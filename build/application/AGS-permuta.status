@@ -2,20 +2,20 @@
 ### GENERAL ########################################################################
 # --help=0                                 # -h : Prints this message
 # --stopOnUnknownParam=1                   # Stop if unkown param entered
-# --Semilla=1518149561                     # -S : semilla de numeros aleatorios
+# --Semilla=1518574494                     # -S : semilla de numeros aleatorios
 
 ### GUARDAR DATOS ##################################################################
 # --setGeneracion=100                      # -T : Cada cuantas generaciones se guarda la poblacion
 
 ### PARAMETROS ALGORITMO ###########################################################
-# --PopSize=100                            # -P : Tamano de la poblacion
-# --MaxGen=10                              # -G : Criterio de parada, Numero maximo de generaciones
+# --PopSize=20                             # -P : Tamano de la poblacion
+# --MaxGen=100                             # -G : Criterio de parada, Numero maximo de generaciones
 # --PointX=2                               # -A : Cantidad de puntos de cruce
-# --Operadores=6                           # -C : Cantidad de operadores de cruce y mutacion
+# --Operadores=8                           # -C : Cantidad de operadores de cruce y mutacion
 # --Alelos=7                               # -D : Cantidad de alelos por gen/operador
-# --Pcruza=0.87                            # -X : Probabilidad de cruzamiento SBX
-# --Pmutacion=0.85                         # -Y : Probabilidad de mutacion de la encapsulacion de SVN y Swap
-# --Pmutacion1=0.85                        # -Z : Probabilidad de mutacion de SVN
+# --Pcruza=0.9                             # -X : Probabilidad de cruzamiento SBX
+# --Pmutacion=0.2                          # -Y : Probabilidad de mutacion de la encapsulacion de SVN y Swap
+# --Pmutacion1=0.5                         # -Z : Probabilidad de mutacion de SVN
 # --Pmutacion2=0.5                         # -W : Probabilidad de mutacion de Swap
 # --SizeTorneo=8                           # -L : Tamano del torneo para seleccion de individuos
 # --SizeElist=2                            # -B : Cantidad de individuos que se conservan

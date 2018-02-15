@@ -5,7 +5,6 @@
 #include <Individuo.h>
 #include <IndiInit.h>
 #include <localizacionEvalPenal.h>
-#include <escenario.h>
 #include <sys/time.h>
 
 //Operadores de cruce
@@ -24,12 +23,37 @@ typedef UniformCrossover<Individuo> UX;
 typedef SwapMutation<Individuo> SWAP;
 typedef SingleVertexNeighborhood<Individuo> SVN;
 typedef UniformMutation<Individuo> UM;
-
+typedef eoIncrementorParam<unsigned> Incrementor;
 
 template <class EOT>
 class evalGAs : public eoEvalFunc<EOT>{
 
+  protected:
+  //Datos necesarios del escenario de prueba
+    double _min = 0.0;
+    double _max = 200.0;
+    unsigned int NoAnclas = 20;
+    unsigned int nodos = 120;
+    double radio = 40.0;
+
+    double DisReal[500][500];
+    double vecAnclas[40];
+
   public :
+    evalGAs (double _DisReal[500][500], double _vecAnclas[500]){
+      for (int i=0; i<nodos ; i++){
+          for (int j=0; j<nodos; j++){
+              DisReal[i][j] = _DisReal[i][j];
+          }
+      }
+
+      for (int i=0 ; i<NoAnclas*2 ; i++){
+         vecAnclas[i] = _vecAnclas[i];
+      }
+    }
+    ~evalGAs(){
+      std::cout << "Se ejecuta el destructor" << std::endl;
+    }
     void operator()(EOT& _eo){
 
       /**Conversion de Genotipo a valores de probabilidad**/
@@ -58,21 +82,11 @@ class evalGAs : public eoEvalFunc<EOT>{
           //eoParser parser(argc, argv);
 
       //Se definen los parametros, se leen desde el parser y le asigna el valor
-          unsigned seed = time(0);
-
-          //Datos necesarios del escenario de prueba
-          double _min = 0.0;
-          double _max = 200.0;
-          unsigned int NoAnclas = 20;
-          unsigned int nodos = 120;
-          double radio = 40.0;
-
-          double DisReal[500][500];
-          double vecAnclas[NoAnclas*2];
+        unsigned seed = time(0);
 
       //Configuracion parametros algoritmo
-          unsigned int POP_SIZE = 100;
-          unsigned int numberGeneration = 2;
+          unsigned int POP_SIZE = 50;
+          unsigned int numberGeneration = 1500;
           unsigned int Nc = 2;
           double Alpha = 0.5;
           float preferencia = 0.5;
@@ -93,15 +107,7 @@ class evalGAs : public eoEvalFunc<EOT>{
           struct timeval ti, tf;
           double tiempo;
 
-      /**CARGAR EL ESCENARIO**/
-      //Escenario
-          //Lee desde archivo
-          escenario *pEscenario = new escenario(nodos, NoAnclas);
-          //Matriz de distancia
-          for (int i=0; i<nodos ; i++)
-              {for (int j=0; j<nodos; j++)DisReal[i][j] = pEscenario->obtenerDisRSSI(i,j);}
-          //Posicion Nodos anclas
-          for (int i=0 ; i<NoAnclas*2 ; i++)vecAnclas[i] = pEscenario->obtenerAnclas(i);
+std::cout<<"Comienza la inicializacion"<< std::endl;
 
       /**COMIENZO DEL ALGORITMO**/
           //Define la representaciOn (Individuo)
@@ -141,11 +147,12 @@ class evalGAs : public eoEvalFunc<EOT>{
           /** MUTACION **/
               //Subclase de mutacion paper IEEE
                   //Se inicializa el contador de generaciones
-                  eoIncrementorParam<unsigned> generationCounter("Gen.");
+                  //Incrementor generationCounter("Gen.");
+                  Incrementor *generationCounter = new Incrementor("Gen.");
 
               //Operador especifico para el problema
-              SVN mutationA(NoAnclas, numberGeneration, nodos, _min, _max, & generationCounter);
-
+              SVN mutationA(NoAnclas, numberGeneration, nodos, _min, _max, & *generationCounter);
+                                                                          //el uso del ampersand permite compartir la direccion en memoria de una variable.
               //Mutacion incluida en EO, permite llegar mas rapido a un fitness de 600
               SWAP mutationB;
 
@@ -155,6 +162,7 @@ class evalGAs : public eoEvalFunc<EOT>{
               //Combina operadores de mutacion con su respectivo peso
               eoPropCombinedMonOp<Individuo> mutation(mutationA,PmutationA);
               mutation.add(mutationB, PmutationB);
+              //eoPropCombinedMonOp<Individuo> mutation(mutationB,PmutationB);
               mutation.add(mutationC, PmutationC);
 
           //Define un objeto de encapsulacion (it contains, the crossover, the crossover rate, the mutation and the mutation rate) -> 1 line
@@ -185,25 +193,25 @@ class evalGAs : public eoEvalFunc<EOT>{
               //poblacion.printOn(std::cout);
 
           //Imprime un salto de linea
-              std::cout<< std::endl;
+              std::cout<<"Imprime un salto de linea"<< std::endl;
 
           //Contenedor de clases
               eoCheckPoint<Individuo> PuntoChequeo(parada);
 
           //Se carga el contador de generaciones al objeto eoCheckpoint para contar el numero de generaciones
-              PuntoChequeo.add(generationCounter);
+              PuntoChequeo.add(*generationCounter);
 
 
 
 
           //Guardar algunas estadisticas de la poblacion
               //Muestra el mejor fitness de cada generaci�n
-              eoBestFitnessStat<Individuo> Elmejor("Mejor Fitness");
+              //eoBestFitnessStat<Individuo> Elmejor("Mejor Fitness");
               //La media y stdev
-              eoSecondMomentStats<Individuo> SegundoStat;
+              //eoSecondMomentStats<Individuo> SegundoStat;
               //Se agrega al eoCheckPoint
-              PuntoChequeo.add(Elmejor);
-              PuntoChequeo.add(SegundoStat);
+              //PuntoChequeo.add(Elmejor);
+              //PuntoChequeo.add(SegundoStat);
 
           /**Otra forma de cargar la poblacion**/
                       //Para la inicializaci�n del cromosoma, primero se debe definir como se generaran los genes y la semilla
@@ -220,9 +228,9 @@ class evalGAs : public eoEvalFunc<EOT>{
                           poblacion.push_back(cromosoma);
                       }
                       //Guarda la poblacion inicial a un archivo, para usarlo como semilla se debe agregar al inicio \section{eoPop}
-                      std::string pobla = "PopInicial.txt";
-                      std::ofstream poblacion1(pobla.c_str());
-                      poblacion.printOn(poblacion1);
+                      //std::string pobla = "PopInicial.txt";
+                      //std::ofstream poblacion1(pobla.c_str());
+                      //poblacion.printOn(poblacion1);
 
           // Incializa el algoritmo genetico secuencial
               eoEasyEA<Individuo> algoritmo(PuntoChequeo, Fitness, seleccion, encapsulacion, reemplazo, Trunca);
@@ -231,8 +239,9 @@ class evalGAs : public eoEvalFunc<EOT>{
               gettimeofday(&ti, NULL);
 
           //Corre el algoritmo en la poblacion inicializada
+          //std::cout<<"Comienza la ejecucion"<< std::endl;
               algoritmo(poblacion);
-
+          //std::cout<<"Termina la ejecucion"<< std::endl;
           //Tiempo Final
               gettimeofday(&tf, NULL);
 
@@ -250,8 +259,8 @@ class evalGAs : public eoEvalFunc<EOT>{
               tiempo = (tf.tv_sec - ti.tv_sec)*1000 + (tf.tv_usec - ti.tv_usec)/1000.0;
 
               //std::cout <<"Tiempo de ejecucion en milisegundos: " << tiempo << std::endl;
-              //std::cout <<"Tiempo de ejecucion en segundos: " << tiempo/1000.0 << std::endl;
-              std::cout <<"Tiempo de ejecucion en minutos: " << (tiempo/1000.0)/60 << std::endl;
+              std::cout <<"Tiempo de ejecucion en segundos: " << tiempo/1000.0 << std::endl;
+              //std::cout <<"Tiempo de ejecucion en minutos: " << (tiempo/1000.0)/60 << std::endl;
 
               //std::cout << std::endl;
           //Se grafica el error y todos los nodos
@@ -259,7 +268,7 @@ class evalGAs : public eoEvalFunc<EOT>{
               //graphError error(filename, setGeneracion, numberGeneration, nodos, NoAnclas, _max);
 
             //std::cout << std::endl;
-
+            delete generationCounter;
             _eo.fitness(poblacion.nth_element_fitness(0));
     }
 };

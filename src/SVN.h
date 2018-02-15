@@ -1,7 +1,7 @@
 #ifndef SingleVertexNeighborhood_h
 #define SingleVertexNeighborhood_h
 
-template<class EOT> 
+template<class EOT>
 class SingleVertexNeighborhood: public eoMonOp<EOT>{
 
 public:
@@ -20,6 +20,8 @@ public:
 
                 //Obtiene la generación actual
                 int t = atoi(nbGenerations->getValue().c_str());
+                //std::cout << "Muestra la generacion: " << t << std::endl;
+                //std::cout << std::endl;
                 r = idealDistance * (1-(t/T));
 
                 for(int i=noAnclas; i<nodos; i++){

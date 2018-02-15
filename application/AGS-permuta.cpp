@@ -5,7 +5,7 @@
 #include <ceroOperador.h>
 
 #include <sys/time.h>
-
+#include <escenario.h>
 typedef eoBit<eoMinimizingFitness> IndiBinario; //Es una representacion binaria donde el fitness es un double
 
 int main (int argc, char* argv[]){
@@ -15,20 +15,20 @@ int main (int argc, char* argv[]){
 //Se definen los parametros, se leen desde el parser y le asigna el valor
     unsigned seed = parser.createParam(unsigned(time(0)), "Semilla", "semilla de numeros aleatorios", 'S').value();
 //Configuracion parametros algoritmo
-    unsigned int POP_SIZE = parser.createParam((unsigned int)(100), "PopSize", "Tamano de la poblacion",'P',"Parametros Algoritmo").value();
-    unsigned int numberGeneration = parser.createParam((unsigned int)(10), "MaxGen", "Criterio de parada, Numero maximo de generaciones",'G',"Parametros Algoritmo").value();
-    unsigned int pointX = parser.createParam((unsigned int)(2), "PointX", "Cantidad de puntos de cruce",'A',"Parametros Algoritmo").value();
-    unsigned int countOperator = parser.createParam((unsigned int)(6), "Operadores", "Cantidad de operadores de cruce y mutacion",'C',"Parametros Algoritmo").value();
+    unsigned int POP_SIZE = parser.createParam((unsigned int)(30), "PopSize", "Tamano de la poblacion",'P',"Parametros Algoritmo").value();
+    unsigned int numberGeneration = parser.createParam((unsigned int)(200), "MaxGen", "Criterio de parada, Numero maximo de generaciones",'G',"Parametros Algoritmo").value();
+    unsigned int pointX = parser.createParam((unsigned int)(4), "PointX", "Cantidad de puntos de cruce",'A',"Parametros Algoritmo").value();
+    unsigned int countOperator = parser.createParam((unsigned int)(8), "Operadores", "Cantidad de operadores de cruce y mutacion",'C',"Parametros Algoritmo").value();
     unsigned int Alelos = parser.createParam((unsigned int)(7), "Alelos", "Cantidad de alelos por gen/operador",'D',"Parametros Algoritmo").value();
-    double Pcruza = parser.createParam((double)(0.87), "Pcruza", "Probabilidad de cruzamiento SBX",'X',"Parametros Algoritmo").value();
-    double Pmutation = parser.createParam((double)(0.85), "Pmutacion", "Probabilidad de mutacion de la encapsulacion de SVN y Swap",'Y',"Parametros Algoritmo").value();
-    double Pmutation1 = parser.createParam((double)(0.85), "Pmutacion1", "Probabilidad de mutacion de SVN",'Z',"Parametros Algoritmo").value();
+    double Pcruza = parser.createParam((double)(0.9), "Pcruza", "Probabilidad de cruzamiento SBX",'X',"Parametros Algoritmo").value();
+    double Pmutation = parser.createParam((double)(0.2), "Pmutacion", "Probabilidad de mutacion de la encapsulacion de SVN y Swap",'Y',"Parametros Algoritmo").value();
+    double Pmutation1 = parser.createParam((double)(0.5), "Pmutacion1", "Probabilidad de mutacion de SVN",'Z',"Parametros Algoritmo").value();
     double Pmutation2 = parser.createParam((double)(0.5), "Pmutacion2", "Probabilidad de mutacion de Swap",'W',"Parametros Algoritmo").value();
     double sizeTorneo = parser.createParam((double)(8), "SizeTorneo", "Tamano del torneo para seleccion de individuos",'L',"Parametros Algoritmo").value();
     double sizeElist = parser.createParam((double)(2), "SizeElist", "Cantidad de individuos que se conservan",'B',"Parametros Algoritmo").value();
     double sizeTorneo1 = parser.createParam((double)(2), "SizeTorneo1", "Tamano del torneo para seleccion de individuos del elitismo",'Q',"Parametros Algoritmo").value();
 //Parametros de guardado
-    unsigned int setGeneracion = parser.createParam((unsigned int)(100), "setGeneracion", "Cada cuantas generaciones se guarda la poblacion",'T',"Guardar Datos").value();
+    unsigned int setGeneracion = parser.createParam((unsigned int)(20), "setGeneracion", "Cada cuantas generaciones se guarda la poblacion",'T',"Guardar Datos").value();
 
 // El nombre del archivo status donde todos los parametros seran guardados
     std::string str_status = parser.ProgramName() + ".status"; // default value
@@ -50,12 +50,26 @@ int main (int argc, char* argv[]){
     struct timeval ti, tf;
     double tiempo;
 
+/**CARGAR EL ESCENARIO**/
+    //Escenario
+    unsigned int NoAnclas = 20;
+    unsigned int nodos = 120;
+    double DisReal[500][500];
+    double vecAnclas[NoAnclas*2];
+        //Lee desde archivo
+        escenario *pEscenario = new escenario(nodos, NoAnclas);
+        //Matriz de distancia
+        for (int i=0; i<nodos ; i++)
+            {for (int j=0; j<nodos; j++)DisReal[i][j] = pEscenario->obtenerDisRSSI(i,j);}
+        //Posicion Nodos anclas
+        for (int i=0 ; i<NoAnclas*2 ; i++)vecAnclas[i] = pEscenario->obtenerAnclas(i);
+
 
 //Define la representacion (IndiBinario)
     //IndiBinario Individuo;
 
 //Generar una subclase de la clase de la funcion de evaluacion
-    evalGAs<IndiBinario> Fitness;
+    evalGAs<IndiBinario> Fitness(DisReal,vecAnclas);
 
 //Criterio de parada
     eoGenContinue<IndiBinario> parada(numberGeneration);

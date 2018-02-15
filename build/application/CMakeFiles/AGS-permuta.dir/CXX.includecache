@@ -87,8 +87,6 @@ IndiInit.h
 -
 localizacionEvalPenal.h
 -
-escenario.h
--
 sys/time.h
 -
 UX.h
@@ -124,6 +122,8 @@ evalPrueba.h
 ceroOperador.h
 -
 sys/time.h
+-
+escenario.h
 -
 
 /home/jfonseca/GitHub/paradiseo/eo/src/EO.h
