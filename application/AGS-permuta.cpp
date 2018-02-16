@@ -28,7 +28,7 @@ int main (int argc, char* argv[]){
     double sizeElist = parser.createParam((double)(2), "SizeElist", "Cantidad de individuos que se conservan",'B',"Parametros Algoritmo").value();
     double sizeTorneo1 = parser.createParam((double)(2), "SizeTorneo1", "Tamano del torneo para seleccion de individuos del elitismo",'Q',"Parametros Algoritmo").value();
 //Parametros de guardado
-    unsigned int setGeneracion = parser.createParam((unsigned int)(20), "setGeneracion", "Cada cuantas generaciones se guarda la poblacion",'T',"Guardar Datos").value();
+    unsigned int setGeneracion = parser.createParam((unsigned int)(1), "setGeneracion", "Cada cuantas generaciones se guarda la poblacion",'T',"Guardar Datos").value();
 
 // El nombre del archivo status donde todos los parametros seran guardados
     std::string str_status = parser.ProgramName() + ".status"; // default value

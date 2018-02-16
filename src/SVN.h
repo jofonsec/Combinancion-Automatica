@@ -29,6 +29,7 @@ public:
                         _Individuo[i*2] = _Individuo[i*2] + r * cos(theta);
                         _Individuo[i*2+1] = _Individuo[i*2+1] + r * sin(theta);
                 }
+                std::cout<<"se ejecuta SVN"<< std::endl;
                 return true;
         }
 

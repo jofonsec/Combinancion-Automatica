@@ -2,15 +2,15 @@
 ### GENERAL ########################################################################
 # --help=0                                 # -h : Prints this message
 # --stopOnUnknownParam=1                   # Stop if unkown param entered
-# --Semilla=1518574494                     # -S : semilla de numeros aleatorios
+# --Semilla=1518749314                     # -S : semilla de numeros aleatorios
 
 ### GUARDAR DATOS ##################################################################
-# --setGeneracion=100                      # -T : Cada cuantas generaciones se guarda la poblacion
+# --setGeneracion=1                        # -T : Cada cuantas generaciones se guarda la poblacion
 
 ### PARAMETROS ALGORITMO ###########################################################
-# --PopSize=20                             # -P : Tamano de la poblacion
-# --MaxGen=100                             # -G : Criterio de parada, Numero maximo de generaciones
-# --PointX=2                               # -A : Cantidad de puntos de cruce
+# --PopSize=30                             # -P : Tamano de la poblacion
+# --MaxGen=200                             # -G : Criterio de parada, Numero maximo de generaciones
+# --PointX=4                               # -A : Cantidad de puntos de cruce
 # --Operadores=8                           # -C : Cantidad de operadores de cruce y mutacion
 # --Alelos=7                               # -D : Cantidad de alelos por gen/operador
 # --Pcruza=0.9                             # -X : Probabilidad de cruzamiento SBX

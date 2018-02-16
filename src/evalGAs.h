@@ -212,7 +212,7 @@ std::cout<<"Comienza la inicializacion"<< std::endl;
               //Se agrega al eoCheckPoint
               //PuntoChequeo.add(Elmejor);
               //PuntoChequeo.add(SegundoStat);
-
+std::cout<<"Se genera la poblacion"<< std::endl;
           /**Otra forma de cargar la poblacion**/
                       //Para la inicializaci�n del cromosoma, primero se debe definir como se generaran los genes y la semilla
                       rng.reseed(seed);
@@ -236,13 +236,16 @@ std::cout<<"Comienza la inicializacion"<< std::endl;
               eoEasyEA<Individuo> algoritmo(PuntoChequeo, Fitness, seleccion, encapsulacion, reemplazo, Trunca);
 
           //Tiempo inicial
+          std::cout<<"Se inicializa el tiempo ti"<< std::endl;
               gettimeofday(&ti, NULL);
 
           //Corre el algoritmo en la poblacion inicializada
           //std::cout<<"Comienza la ejecucion"<< std::endl;
+          std::cout<<"Comienza la ejecución del algoritmo"<< std::endl;
               algoritmo(poblacion);
           //std::cout<<"Termina la ejecucion"<< std::endl;
           //Tiempo Final
+          std::cout<<"Se inicializa el tiempo tf"<< std::endl;
               gettimeofday(&tf, NULL);
 
               std::cout << std::endl;
