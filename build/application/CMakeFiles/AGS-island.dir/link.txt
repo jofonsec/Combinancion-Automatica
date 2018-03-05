@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3 -DNDEBUG -std=c++11 -pthread   CMakeFiles/AGS-island.dir/AGS-island.cpp.o  -o AGS-island -rdynamic /home/jfonseca/GitHub/paradiseo/build/lib/libeoutils.a /home/jfonseca/GitHub/paradiseo/build/lib/libeo.a /home/jfonseca/GitHub/paradiseo/build/lib/libsmp.a ../lib/liblDiscovery.a 

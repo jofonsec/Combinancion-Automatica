@@ -44,7 +44,7 @@ include(FindDoxygen)
 include(CheckLibraryExists)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/module")
-find_package(Paradiseo) #El orden es importante
+find_package(Paradiseo COMPONENTS eoutils eo smp) #El orden es importante
 
 include_directories(${PARADISEO_INCLUDE_DIR})
 

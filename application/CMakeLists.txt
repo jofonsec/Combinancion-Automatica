@@ -10,7 +10,10 @@
 	
 	ADD_EXECUTABLE(AGS-permuta AGS-permuta.cpp)
 	ADD_DEPENDENCIES(AGS-permuta lDiscovery)
+	ADD_EXECUTABLE(AGS-island AGS-island.cpp)
+	ADD_DEPENDENCIES(AGS-island lDiscovery)
 
 #3)Vincular las librerias para el ejecutable
 
 	TARGET_LINK_LIBRARIES(AGS-permuta ${PARADISEO_LIBRARIES} lDiscovery)
+	TARGET_LINK_LIBRARIES(AGS-island ${PARADISEO_LIBRARIES} lDiscovery)

@@ -15,8 +15,8 @@ int main (int argc, char* argv[]){
 //Se definen los parametros, se leen desde el parser y le asigna el valor
     unsigned seed = parser.createParam(unsigned(time(0)), "Semilla", "semilla de numeros aleatorios", 'S').value();
 //Configuracion parametros algoritmo
-    unsigned int POP_SIZE = parser.createParam((unsigned int)(30), "PopSize", "Tamano de la poblacion",'P',"Parametros Algoritmo").value();
-    unsigned int numberGeneration = parser.createParam((unsigned int)(200), "MaxGen", "Criterio de parada, Numero maximo de generaciones",'G',"Parametros Algoritmo").value();
+    unsigned int POP_SIZE = parser.createParam((unsigned int)(40), "PopSize", "Tamano de la poblacion",'P',"Parametros Algoritmo").value();
+    unsigned int numberGeneration = parser.createParam((unsigned int)(1000), "MaxGen", "Criterio de parada, Numero maximo de generaciones",'G',"Parametros Algoritmo").value();
     unsigned int pointX = parser.createParam((unsigned int)(4), "PointX", "Cantidad de puntos de cruce",'A',"Parametros Algoritmo").value();
     unsigned int countOperator = parser.createParam((unsigned int)(8), "Operadores", "Cantidad de operadores de cruce y mutacion",'C',"Parametros Algoritmo").value();
     unsigned int Alelos = parser.createParam((unsigned int)(7), "Alelos", "Cantidad de alelos por gen/operador",'D',"Parametros Algoritmo").value();

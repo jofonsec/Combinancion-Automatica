@@ -1,0 +1,52 @@
+
+### GENERAL ########################################################################
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+# --Semilla=1520242171                     # -S : semilla de numeros aleatorios
+
+### GUARDAR DATOS ##################################################################
+# --setGeneracion=1                        # -T : Cada cuantas generaciones se guarda la poblacion
+# --setTime=0                              # -I : Cada cuantos segundos se guarda la configuracion
+
+### PARAMETROS ALGORITMO ###########################################################
+# --PopSize=15                             # -P : Tamano de la poblacion
+# --MaxGen=16                              # -G : Criterio de parada, Numero maximo de generaciones
+# --PointX=4                               # -A : Cantidad de puntos de cruce
+# --Operadores=8                           # -C : Cantidad de operadores de cruce y mutacion
+# --Alelos=7                               # -D : Cantidad de alelos por gen/operador
+# --Pcruza=0.9                             # -X : Probabilidad de cruzamiento SBX
+# --Pmutacion=0.3                          # -Y : Probabilidad de mutacion de la encapsulacion de SVN y Swap
+# --Pmutacion1=0.9                         # -Z : Probabilidad de mutacion de SVN
+# --Pmutacion2=0.5                         # -W : Probabilidad de mutacion de Swap
+# --SizeTorneo=4                           # -L : Tamano del torneo para seleccion de individuos
+# --SizeElist=2                            # -B : Cantidad de individuos que se conservan
+# --SizeTorneo1=4                          # -Q : Tamano del torneo para seleccion de individuos del elitismo
+
+### PERSISTENCE ####################################################################
+# --status=./AGS-island.status             # -S : Status file
+# --Carga=                                 # -L : Se restaura desde un archivo guardado
+
+### POLITICAS DE MIGRACION #########################################################
+# --Intercambio1=3                         # -1 : Define cada cuantas generaciones migran individuos de la isla 1
+# --Intercambio2=3                         # -2 : Define cada cuantas generaciones migran individuos de la isla 2
+# --Intercambio3=3                         # -3 : Define cada cuantas generaciones migran individuos de la isla 3
+# --Intercambio4=3                         # -4 : Define cada cuantas generaciones migran individuos de la isla 4
+# --torneoIsla=4                           # -5 : Tamano del torneo para seleccionar los individuos a migrar
+# --selecIsla=2                            # -6 : Cantidad de individuos seleccionados en el torneo
+
+#####################################################################################
+Tiempo de ejecucion en segundos: 83.522
+oldSize - _newsize: 15
+
+1273.41  56 10111101101011111110110101111100100000110111011001100010
+
+1193.45  56 11001101010010100101010001101100111001000000110100101011
+
+1220.97  56 10110111101100110000100000001110010100001001011101001001
+
+1259.96  56 00011111111100110000100000001110010000010110010001101010
+
+Tiempo de ejecucion en segundos: 24371.7
+Tiempo de ejecucion en minutos: 406.195
+Tiempo de ejecucion en milisegundos: 2.43717e+07
+

@@ -199,22 +199,16 @@ PACKAGE_NAME:STRING=Experimentos
 PACKAGE_VERSION:STRING=1.0
 
 //Path to a library.
-PARADISEO_CMA_LIBRARY:FILEPATH=/home/jfonseca/GitHub/paradiseo/build/lib/libcma.a
-
-//Path to a library.
 PARADISEO_EOUTILS_LIBRARY:FILEPATH=/home/jfonseca/GitHub/paradiseo/build/lib/libeoutils.a
 
 //Path to a library.
 PARADISEO_EO_LIBRARY:FILEPATH=/home/jfonseca/GitHub/paradiseo/build/lib/libeo.a
 
 //Path to a library.
-PARADISEO_ES_LIBRARY:FILEPATH=/home/jfonseca/GitHub/paradiseo/build/lib/libes.a
+PARADISEO_SMP_LIBRARY:FILEPATH=/home/jfonseca/GitHub/paradiseo/build/lib/libsmp.a
 
-//Path to a library.
-PARADISEO_GA_LIBRARY:FILEPATH=/home/jfonseca/GitHub/paradiseo/build/lib/libga.a
-
-//Path to a library.
-PARADISEO_MOEO_LIBRARY:FILEPATH=/home/jfonseca/GitHub/paradiseo/build/lib/libmoeo.a
+//Path to a file.
+SMP_INCLUDE_DIR:PATH=/home/jfonseca/GitHub/paradiseo/smp/src
 
 //Dependencies for target
 lDiscovery_LIB_DEPENDS:STATIC=

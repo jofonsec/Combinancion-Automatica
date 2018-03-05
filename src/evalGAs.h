@@ -85,8 +85,8 @@ class evalGAs : public eoEvalFunc<EOT>{
         unsigned seed = time(0);
 
       //Configuracion parametros algoritmo
-          unsigned int POP_SIZE = 50;
-          unsigned int numberGeneration = 1500;
+          unsigned int POP_SIZE = 100;
+          unsigned int numberGeneration = 10000;
           unsigned int Nc = 2;
           double Alpha = 0.5;
           float preferencia = 0.5;

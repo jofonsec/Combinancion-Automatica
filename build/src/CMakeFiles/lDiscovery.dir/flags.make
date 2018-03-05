@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG -std=c++11 -pthread
 
 CXX_DEFINES = -DDEPRECATED_MESSAGES
 
-CXX_INCLUDES = -I/home/jfonseca/GitHub/paradiseo/eo/src -I/home/jfonseca/GitHub/paradiseo/mo/src -I/home/jfonseca/GitHub/paradiseo/moeo/src -I/home/jfonseca/GitHub/Automatic/src 
+CXX_INCLUDES = -I/home/jfonseca/GitHub/paradiseo/eo/src -I/home/jfonseca/GitHub/paradiseo/mo/src -I/home/jfonseca/GitHub/paradiseo/moeo/src -I/home/jfonseca/GitHub/paradiseo/smp/src -I/home/jfonseca/GitHub/Automatic/src 
 
